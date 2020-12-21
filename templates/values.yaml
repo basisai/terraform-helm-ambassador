@@ -320,12 +320,11 @@ enableAES: ${enable_aes}
 # Set createSecret: false is installing multiple releases of The Ambassador
 # Edge Stack in the same namespace.
 licenseKey:
-  value:
-  createSecret: true
-  secretName:
+  value: ${license_key}
+  createSecret: ${license_key_create_secret}
+  secretName: ${license_key_secret_name}
   # Annotations to attach to the license-key-secret.
-  annotations:
-    {}
+  annotations: ${license_key_secret_annotations}
 
 # The DevPortal is exposed at /docs/ endpoint in the AES container.
 # Setting this to true will automatically create routes for the DevPortal.
@@ -337,22 +336,20 @@ createDevPortalMappings: true
 # by default with The Ambassador Edge Stack.
 #
 # URL of your redis instance. Defaults to redis instance created below.
-redisURL:
+redisURL: ${redis_url}
 
 # Ambassador ships with a basic redis instance. Configure the deployment with the options below.
 redis:
-  create: true
+  create: ${redis_create}
   image:
-    repository: redis
-    tag: 5.0.1
+    repository: ${redis_image}
+    tag: ${redis_tag}
     pullPolicy: IfNotPresent
   # Annotations for Ambassador Pro's redis instance.
   annotations:
-    deployment:
-      {}
-    service:
-      {}
-  resources: {}
+    deployment: ${redis_deployment_annotations}
+    service: ${redis_service_annotations}
+  resources: ${redis_resources}
   # If you want to specify resources, uncomment the following
   # lines and remove the curly braces after 'resources:'.
   # These are placeholder values and must be tuned.
@@ -363,8 +360,8 @@ redis:
   #     cpu: 50m
   #     memory: 128Mi
   nodeSelector: {}
-  affinity: {}
-  tolerations: {}
+  affinity: ${redis_affinity}
+  tolerations: ${redis_tolerations}
 
 
 # Configures the AuthService that ships with the Ambassador Edge Stack.
@@ -375,9 +372,9 @@ redis:
 # the External Filter to communicate with a custom authentication service.
 # https://www.getambassador.io/reference/filter-reference/#filter-type-external
 authService:
-  create: true
+  create: ${auth_service_create}
   # Set additional configuration options. See https://www.getambassador.io/reference/services/auth-service for more information
-  optional_configurations:
+  optional_configurations: ${auth_service_config}
     # include_body:
     #   max_bytes: 4096
     #   allow_partial: true
@@ -394,13 +391,13 @@ authService:
 # Configures the RateLimitService in the Ambassador Edge Stack.
 # Keep this enabled to configure RateLimits in AES.
 rateLimit:
-  create: true
+  create: ${rate_limit_create}
 
 # Projects are a beta feature of Ambassador that allow developers to stage and
 # deploy code with nothing more than a Github repository.
 # See: https://www.getambassador.io/docs/latest/topics/using/projects/
 registry:
-  create: false
+  create: ${registry_create}
 
 ################################################################################
 ## DEPRECATED configuration objects                                           ##

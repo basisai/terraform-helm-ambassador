@@ -338,7 +338,7 @@ variable "tolerations" {
   default     = []
 }
 
-variable "pod_affinity" {
+variable "affinity" {
   description = "Pod affinity"
   default     = {}
 }
@@ -369,4 +369,94 @@ variable "crds_keep" {
 variable "enable_aes" {
   description = "Enable Edge Stack"
   default     = true
+}
+
+variable "license_key" {
+  description = "License key for AES"
+  default     = ""
+}
+
+variable "license_key_create_secret" {
+  description = "Create secret for license key"
+  default     = true
+}
+
+variable "license_key_secret_name" {
+  description = "Secret name for license"
+  default     = ""
+}
+
+variable "license_key_secret_annotations" {
+  description = "License key secret annotations"
+  default     = {}
+}
+
+variable "create_dev_portal_mappings" {
+  description = "# The DevPortal is exposed at /docs/ endpoint in the AES container. Setting this to true will automatically create routes for the DevPortal."
+  default     = true
+}
+
+variable "redis_url" {
+  description = "Custom Redis URL"
+  default     = ""
+}
+
+variable "redis_create" {
+  description = "Create Redis"
+  default     = true
+}
+
+variable "redis_image" {
+  description = "Redis image"
+  default     = "redis"
+}
+
+variable "redis_tag" {
+  description = "Redis image tag"
+  default     = "5.0.1"
+}
+
+variable "redis_deployment_annotations" {
+  description = "Redis deployment annotations"
+  default     = {}
+}
+
+variable "redis_service_annotations" {
+  description = "Redis service annotations"
+  default     = {}
+}
+
+variable "redis_resources" {
+  description = "Redis resources"
+  default     = {}
+}
+
+variable "redis_affinity" {
+  description = "Affinity for redis pods"
+  default     = {}
+}
+
+variable "redis_tolerations" {
+  description = "Redis tolerations"
+  default     = []
+}
+
+variable "auth_service_create" {
+  description = "Deploy AuthService"
+  default     = true
+}
+
+variable "auth_service_config" {
+  description = "Configuration for AuthService"
+  default     = {}
+}
+
+variable "rate_limit_create" {
+  description = "Create the RateLimitService"
+  default     = true
+}
+
+variable "registry_create" {
+  description = "Enable Projects beta feature"
+  default     = false
 }

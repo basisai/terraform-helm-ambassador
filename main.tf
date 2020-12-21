@@ -19,6 +19,7 @@ locals {
     daemonset = var.daemonset
 
     image_repository = var.image_repository
+    image_tag        = var.image_tag
 
     test_enabled = var.test_enabled
     test_image   = var.test_image

@@ -289,7 +289,7 @@ nodeSelector: {}
 
 tolerations: ${tolerations}
 
-affinity: ${pod_affinity}
+affinity: ${affinity}
 
 ambassadorConfig: ${ambassador_config}
 

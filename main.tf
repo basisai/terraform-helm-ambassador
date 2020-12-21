@@ -59,7 +59,34 @@ locals {
     rbac_name_override = var.rbac_name_override
 
     service_account_create = var.service_account_create
-    service_account_name = var.service_account_name
+    service_account_name   = var.service_account_name
+
+    restart_policy                   = var.restart_policy
+    termination_grace_period_seconds = var.termination_grace_period_seconds
+
+    init_containers    = jsonencode(var.init_containers)
+    sidecar_containers = jsonencode(var.sidecar_containers)
+    liveness_probe     = jsonencode(var.liveness_probe)
+    readiness_probe    = jsonencode(var.readiness_probe)
+
+    volumes                = jsonencode(var.volumes)
+    volume_mounts          = jsonencode(var.volume_mounts)
+    pod_labels             = jsonencode(var.pod_labels)
+    pod_annotations        = jsonencode(var.pod_annotations)
+    deployment_labels      = jsonencode(var.deployment_labels)
+    deployment_annotations = jsonencode(var.deployment_annotations)
+
+    resources           = jsonencode(var.resources)
+    priority_class_name = var.priority_class_name
+    tolerations         = jsonencode(var.tolerations)
+    affinity            = jsonencode(var.affinity)
+
+    ambassador_config = jsonencode(var.ambassador_config)
+    crds_enable       = var.crds_enable
+    crds_create       = var.crds_create
+    crds_keep         = var.crds_keep
+
+    enable_aes = var.enable_aes
   }
 }
 

@@ -204,7 +204,7 @@ variable "admin_service_type" {
 
 variable "admin_service_port" {
   description = "Port for admin service"
-  defaut      = 8877
+  default     = 8877
 }
 
 variable "admin_service_node_port" {
@@ -244,5 +244,129 @@ variable "service_account_create" {
 
 variable "service_account_name" {
   description = "Override service account name"
-  default = ""
+  default     = ""
+}
+
+variable "restart_policy" {
+  description = "Restart policy for pods"
+  default     = ""
+}
+
+variable "termination_grace_period_seconds" {
+  description = "Termination grace period"
+}
+
+variable "init_containers" {
+  description = "Custom init containers"
+  default     = []
+}
+
+variable "sidecar_containers" {
+  description = "Custom Sidecar containers"
+  default     = []
+}
+
+variable "liveness_probe" {
+  description = "Liveness Probe configuration"
+  default = {
+    initialDelaySeconds = 30
+    periodSeconds       = 3
+    failureThreshold    = 3
+  }
+}
+
+variable "readiness_probe" {
+  description = "Readiness probe configuration"
+  default = {
+    initialDelaySeconds = 30
+    periodSeconds       = 3
+    failureThreshold    = 3
+  }
+}
+
+variable "volumes" {
+  description = "Additional volumes"
+  default     = []
+}
+
+variable "volume_mounts" {
+  description = "Additional volume mounts"
+  default     = []
+}
+
+variable "pod_labels" {
+  description = "Labels for pods"
+  default     = {}
+}
+
+variable "pod_annotations" {
+  description = "Pod annotations"
+  default     = {}
+}
+
+variable "deployment_labels" {
+  description = "Labels for deployments"
+  default     = {}
+}
+
+variable "deployment_annotations" {
+  description = "Deploymoent annotations"
+  default     = {}
+}
+
+variable "resources" {
+  description = "Pod resources"
+  default = {
+    requests = {
+      cpu    = "200m"
+      memory = "600Mi"
+    }
+    limits = {
+      cpu    = "1000m"
+      memory = "600Mi"
+    }
+  }
+}
+
+variable "priority_class_name" {
+  description = "Priority class names"
+  default     = ""
+}
+
+variable "tolerations" {
+  description = "Pod tolerations"
+  default     = []
+}
+
+variable "pod_affinity" {
+  description = "Pod affinity"
+  default     = {}
+}
+
+variable "ambassador_config" {
+  description = "Ambassador Config"
+  default     = ""
+}
+
+variable "crds_enable" {
+  description = "Enable CRDs"
+  default     = true
+}
+
+variable "crds_create" {
+  description = "Create CRDs"
+  default     = true
+}
+
+variable "crds_keep" {
+  description = "Keep CRDs"
+  default     = true
+}
+
+##########################################
+# Ambassador Edge Stack Configuration
+##########################################
+variable "enable_aes" {
+  description = "Enable Edge Stack"
+  default     = true
 }

@@ -240,67 +240,63 @@ serviceAccount:
 deploymentStrategy:
   type: RollingUpdate
 
-restartPolicy:
+restartPolicy: ${restart_policy}
 
-terminationGracePeriodSeconds:
+terminationGracePeriodSeconds: ${termination_grace_period_seconds}
 
-initContainers: []
+initContainers: ${init_containers}
 
-sidecarContainers: []
+sidecarContainers: ${sidecar_containers}
 
-livenessProbe:
-  initialDelaySeconds: 30
-  periodSeconds: 3
-  failureThreshold: 3
+livenessProbe: ${liveness_probe}
+  # initialDelaySeconds: 30
+  # periodSeconds: 3
+  # failureThreshold: 3
 
-readinessProbe:
-  initialDelaySeconds: 30
-  periodSeconds: 3
-  failureThreshold: 3
+readinessProbe: ${readiness_probe}
+  # initialDelaySeconds: 30
+  # periodSeconds: 3
+  # failureThreshold: 3
 
 
-volumes: []
+volumes: ${volumes}
 
-volumeMounts: []
+volumeMounts: ${volume_mounts}
 
-podLabels:
-  {}
+podLabels: ${pod_labels}
 
-podAnnotations:
-  {}
+podAnnotations: ${pod_annotations}
   # prometheus.io/scrape: "true"
   # prometheus.io/port: "9102"
 
-deploymentLabels:
-  {}
+deploymentLabels: ${deployment_labels}
 
-deploymentAnnotations:
-  {}
+deploymentAnnotations: ${deployment_annotations}
   # configmap.reloader.stakater.com/auto: "true"
 
-resources:
+resources: ${resources}
   # Recommended resource requests and limits for Ambassador
-  limits:
-    cpu: 1000m
-    memory: 600Mi
-  requests:
-    cpu: 200m
-    memory: 300Mi
+  # limits:
+  #   cpu: 1000m
+  #   memory: 600Mi
+  # requests:
+  #   cpu: 200m
+  #   memory: 300Mi
 
 priorityClassName: ""
 
 nodeSelector: {}
 
-tolerations: []
+tolerations: ${tolerations}
 
-affinity: {}
+affinity: ${pod_affinity}
 
-ambassadorConfig: ""
+ambassadorConfig: ${ambassador_config}
 
 crds:
-  enabled: true
-  create: true
-  keep: true
+  enabled: ${crds_enable}
+  create: ${crds_create}
+  keep: ${crds_keep}
 
 # Prometheus Operator ServiceMonitor configuration
 # See documentation: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#servicemonitor
@@ -319,7 +315,7 @@ metrics:
 # Go to https://{ambassador-host}/edge_stack/admin/#dashboard to register
 # for a community license key.
 
-enableAES: true
+enableAES: ${enable_aes}
 
 # Set createSecret: false is installing multiple releases of The Ambassador
 # Edge Stack in the same namespace.

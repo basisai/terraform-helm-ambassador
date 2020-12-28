@@ -187,6 +187,11 @@ variable "external_ips" {
   default     = []
 }
 
+variable "load_balancer_ip" {
+  description = "LoadBalancer IP, if supported by the cloud provider"
+  default     = ""
+}
+
 variable "service_annotations" {
   description = "Annotation for the service"
   default     = {}

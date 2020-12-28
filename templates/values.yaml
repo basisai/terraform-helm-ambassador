@@ -157,6 +157,8 @@ service:
 
   externalIPs: ${external_ips}
 
+  loadBalancerIP: ${load_balancer_ip}
+
   annotations: ${service_annotations}
   #############################################################################
   ## Ambassador should be configured using CRD definition. If you want

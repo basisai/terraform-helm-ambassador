@@ -47,6 +47,7 @@ locals {
     session_affinity        = var.session_affinity
     session_affinity_config = jsonencode(var.session_affinity_config)
     external_ips            = jsonencode(var.external_ips)
+    load_balancer_ip        = var.load_balancer_ip
     service_annotations     = jsonencode(var.service_annotations)
 
     admin_service_create      = var.admin_service_create

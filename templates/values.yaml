@@ -43,8 +43,9 @@ autoscaling:
 
 podDisruptionBudget: ${pod_disruption_budget}
 
-namespace:
-  name: ${namespace_env}
+${namespace_env}
+# namespace:
+#   name: default
 
 # Additional container environment variable
 # Uncomment or add additional environment variables for the container here.
@@ -158,6 +159,8 @@ service:
   externalIPs: ${external_ips}
 
   loadBalancerIP: ${load_balancer_ip}
+
+  loadBalancerSourceRanges: ${load_balancer_source_ranges}
 
   annotations: ${service_annotations}
   #############################################################################

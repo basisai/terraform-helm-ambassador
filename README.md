@@ -54,6 +54,8 @@ No requirements.
 | license\_key\_secret\_annotations | License key secret annotations | `map` | `{}` | no |
 | license\_key\_secret\_name | Secret name for license | `string` | `""` | no |
 | liveness\_probe | Liveness Probe configuration | `map` | <pre>{<br>  "failureThreshold": 3,<br>  "initialDelaySeconds": 30,<br>  "periodSeconds": 3<br>}</pre> | no |
+| load\_balancer\_ip | LoadBalancer IP, if supported by the cloud provider | `string` | `""` | no |
+| load\_balancer\_source\_ranges | List of CIDRs that the load balancer will accept traffic from | `list` | `[]` | no |
 | max\_history | Max History for Helm | `number` | `20` | no |
 | namespace\_env | Set the AMBASSADOR\_NAMESPACE environment variable | `any` | `null` | no |
 | pod\_annotations | Pod annotations | `map` | `{}` | no |
@@ -89,7 +91,7 @@ No requirements.
 | session\_affinity\_config | Session affinity config | `map` | `{}` | no |
 | sidecar\_containers | Custom Sidecar containers | `list` | `[]` | no |
 | single\_namespace | tells Ambassador to only use resources in the namespace or namespace set by namespace.name | `bool` | `false` | no |
-| termination\_grace\_period\_seconds | Termination grace period | `any` | n/a | yes |
+| termination\_grace\_period\_seconds | Termination grace period | `string` | `""` | no |
 | test\_enabled | Deploy a test pod to test deployment | `bool` | `true` | no |
 | test\_image | Image used for test pod | `string` | `"busybox"` | no |
 | tolerations | Pod tolerations | `list` | `[]` | no |

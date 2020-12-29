@@ -31,7 +31,9 @@ locals {
 
     pod_disruption_budget = jsonencode(var.pod_disruption_budget)
 
-    namespace_env    = var.namespace_env != null ? var.namespace_env : "null"
+    namespace_env = var.namespace_env != null ? yamlencode({
+      namespace = { name = var.namespace_env }
+    }) : ""
     single_namespace = var.single_namespace
     env              = jsonencode(var.env)
     env_raw          = jsonencode(var.env_raw)
@@ -41,14 +43,15 @@ locals {
 
     host_network = var.host_network
 
-    service_type            = var.service_type
-    ports                   = jsonencode(var.ports)
-    external_traffic_policy = var.external_traffic_policy
-    session_affinity        = var.session_affinity
-    session_affinity_config = jsonencode(var.session_affinity_config)
-    external_ips            = jsonencode(var.external_ips)
-    load_balancer_ip        = var.load_balancer_ip
-    service_annotations     = jsonencode(var.service_annotations)
+    service_type                = var.service_type
+    ports                       = jsonencode(var.ports)
+    external_traffic_policy     = var.external_traffic_policy
+    session_affinity            = var.session_affinity
+    session_affinity_config     = jsonencode(var.session_affinity_config)
+    external_ips                = jsonencode(var.external_ips)
+    load_balancer_ip            = var.load_balancer_ip
+    load_balancer_source_ranges = jsonencode(var.load_balancer_source_ranges)
+    service_annotations         = jsonencode(var.service_annotations)
 
     admin_service_create      = var.admin_service_create
     admin_service_type        = var.admin_service_type

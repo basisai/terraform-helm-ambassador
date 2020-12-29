@@ -192,6 +192,11 @@ variable "load_balancer_ip" {
   default     = ""
 }
 
+variable "load_balancer_source_ranges" {
+  description = "List of CIDRs that the load balancer will accept traffic from"
+  default     = []
+}
+
 variable "service_annotations" {
   description = "Annotation for the service"
   default     = {}
@@ -259,6 +264,7 @@ variable "restart_policy" {
 
 variable "termination_grace_period_seconds" {
   description = "Termination grace period"
+  default     = ""
 }
 
 variable "init_containers" {

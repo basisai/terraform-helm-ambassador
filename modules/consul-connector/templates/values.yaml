@@ -1,0 +1,72 @@
+# Default values for ambassador-consul-connector.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: ${replicas}
+
+image:
+  repository: ${image_repository}
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: "${image_tag}"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+ambassadorId: ${ambassador_id}
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations: {}
+
+podSecurityContext: ${pod_security_context}
+  # fsGroup: 2000
+
+securityContext: ${security_context}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+env: ${env}
+volumes: ${volumes}
+volumeMounts: ${volume_mounts}
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources: ${resources}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 200m
+  #   memory: 200Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 200Mi
+
+autoscaling:
+  enabled: ${autoscaling_enabled}
+  minReplicas: ${min_replicas}
+  maxReplicas: ${min_replicas}
+  targetCPUUtilizationPercentage: ${target_cpu_utilization_percentage}
+  targetMemoryUtilizationPercentage: ${target_memory_utilization_percentage}
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}

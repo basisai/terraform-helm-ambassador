@@ -15,7 +15,7 @@ variable "chart_repository" {
 
 variable "chart_version" {
   description = "Version of Chart to install. Set to empty to install the latest version"
-  default     = "6.5.13"
+  default     = "6.5.17"
 }
 
 variable "chart_namespace" {
@@ -53,7 +53,7 @@ variable "image_repository" {
 
 variable "image_tag" {
   description = "Docker image tag"
-  default     = "1.9.1"
+  default     = "1.11.0"
 }
 
 variable "test_enabled" {

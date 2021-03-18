@@ -67,7 +67,7 @@ variable "test_image" {
 }
 
 variable "hpa_enabled" {
-  description = "HorizontalPodAutoscaler H"
+  description = "Enable HorizontalPodAutoscaler"
   default     = false
 }
 

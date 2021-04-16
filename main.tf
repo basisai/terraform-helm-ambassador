@@ -15,6 +15,8 @@ resource "helm_release" "release" {
 
 locals {
   values = {
+    name_override = var.name_override != null ? var.name_override : ""
+
     replicas  = var.replicas
     daemonset = var.daemonset
 
@@ -56,6 +58,7 @@ locals {
     admin_service_create      = var.admin_service_create
     admin_service_type        = var.admin_service_type
     admin_service_port        = var.admin_service_port
+    admin_snapshot_port       = var.admin_snapshot_port
     admin_service_node_port   = var.admin_service_node_port
     admin_service_annotations = jsonencode(var.admin_service_annotations)
 
@@ -86,10 +89,19 @@ locals {
     tolerations         = jsonencode(var.tolerations)
     affinity            = jsonencode(var.affinity)
 
+    topology_spread_constraints = jsonencode(var.topology_spread_constraints)
+
     ambassador_config = jsonencode(var.ambassador_config)
     crds_enable       = var.crds_enable
     crds_create       = var.crds_create
     crds_keep         = var.crds_keep
+
+    endpoint_resolver_create = var.endpoint_resolver_create
+    endpoint_resolver_name   = var.endpoint_resolver_name
+
+    consul_resolver_create = var.consul_resolver_create
+    consul_resolver_name   = var.consul_resolver_create
+    consul_resolver_spec   = var.consul_resolver_spec != null ? jsonencode(var.consul_resolver_spec) : "{}"
 
     enable_aes                     = var.enable_aes
     license_key                    = var.license_key

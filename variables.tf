@@ -15,7 +15,7 @@ variable "chart_repository" {
 
 variable "chart_version" {
   description = "Version of Chart to install. Set to empty to install the latest version"
-  default     = "6.5.17"
+  default     = "6.6.3"
 }
 
 variable "chart_namespace" {
@@ -36,6 +36,12 @@ variable "max_history" {
 #######################
 # Chart Values
 #######################
+variable "name_override" {
+  description = "Override name of generated service"
+  type        = string
+  default     = null
+}
+
 variable "replicas" {
   description = "Number of replicas"
   default     = 3
@@ -53,7 +59,7 @@ variable "image_repository" {
 
 variable "image_tag" {
   description = "Docker image tag"
-  default     = "1.11.0"
+  default     = "1.12.3"
 }
 
 variable "test_enabled" {
@@ -217,6 +223,12 @@ variable "admin_service_port" {
   default     = 8877
 }
 
+variable "admin_snapshot_port" {
+  description = "Port for admin snapshot"
+  type        = number
+  default     = 8005
+}
+
 variable "admin_service_node_port" {
   description = "odePort used if type is NodePort"
   default     = 38877
@@ -354,6 +366,11 @@ variable "affinity" {
   default     = {}
 }
 
+variable "topology_spread_constraints" {
+  description = "Topology Spread Constraints for pods"
+  default     = []
+}
+
 variable "ambassador_config" {
   description = "Ambassador Config"
   default     = ""
@@ -374,6 +391,38 @@ variable "crds_keep" {
   default     = true
 }
 
+variable "endpoint_resolver_create" {
+  description = "Create endpoint resolver. See https://www.getambassador.io/docs/latest/topics/running/resolvers/"
+  type        = bool
+  default     = false
+}
+
+variable "endpoint_resolver_name" {
+  description = "Name of endpoint resolver"
+  type        = string
+  default     = "endpoint"
+}
+
+variable "consul_resolver_create" {
+  description = "Create Consul Resolver"
+  type        = bool
+  default     = false
+}
+
+variable "consul_resolver_name" {
+  description = "Name of Consul Resolver"
+  type        = string
+  default     = "consul-dc1"
+}
+
+variable "consul_resolver_spec" {
+  description = "Specification of Consul Resolver"
+  type = object({
+    address    = string,
+    datacenter = string,
+  })
+  default = null
+}
 ##########################################
 # Ambassador Edge Stack Configuration
 ##########################################

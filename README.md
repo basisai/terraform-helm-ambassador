@@ -2,13 +2,16 @@
 
 ## Requirements
 
-No requirements.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.13 |
+| helm | >= 1 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| helm | n/a |
+| helm | >= 1 |
 
 ## Inputs
 
@@ -19,6 +22,7 @@ No requirements.
 | admin\_service\_node\_port | odePort used if type is NodePort | `number` | `38877` | no |
 | admin\_service\_port | Port for admin service | `number` | `8877` | no |
 | admin\_service\_type | Service type for admin service | `string` | `"ClusterIP"` | no |
+| admin\_snapshot\_port | Port for admin snapshot | `number` | `8005` | no |
 | affinity | Pod affinity | `map` | `{}` | no |
 | ambassador\_config | Ambassador Config | `string` | `""` | no |
 | auth\_service\_config | Configuration for AuthService | `map` | `{}` | no |
@@ -27,7 +31,10 @@ No requirements.
 | chart\_namespace | Namespace to install the chart into | `string` | `"default"` | no |
 | chart\_repository | Helm repository for the chart | `string` | `"https://getambassador.io"` | no |
 | chart\_timeout | Timeout to wait for the Chart to be deployed. | `number` | `300` | no |
-| chart\_version | Version of Chart to install. Set to empty to install the latest version | `string` | `"6.5.13"` | no |
+| chart\_version | Version of Chart to install. Set to empty to install the latest version | `string` | `"6.6.3"` | no |
+| consul\_resolver\_create | Create Consul Resolver | `bool` | `false` | no |
+| consul\_resolver\_name | Name of Consul Resolver | `string` | `"consul-dc1"` | no |
+| consul\_resolver\_spec | Specification of Consul Resolver | <pre>object({<br>    address    = string,<br>    datacenter = string,<br>  })</pre> | `null` | no |
 | container\_security\_context | Container security context | `map` | <pre>{<br>  "allowPrivilegeEscalation": false<br>}</pre> | no |
 | crds\_create | Create CRDs | `bool` | `true` | no |
 | crds\_enable | Enable CRDs | `bool` | `true` | no |
@@ -37,17 +44,19 @@ No requirements.
 | deployment\_annotations | Deploymoent annotations | `map` | `{}` | no |
 | deployment\_labels | Labels for deployments | `map` | `{}` | no |
 | enable\_aes | Enable Edge Stack | `bool` | `true` | no |
+| endpoint\_resolver\_create | Create endpoint resolver. See https://www.getambassador.io/docs/latest/topics/running/resolvers/ | `bool` | `false` | no |
+| endpoint\_resolver\_name | Name of endpoint resolver | `string` | `"endpoint"` | no |
 | env | Additional environment variables | `map` | `{}` | no |
 | env\_raw | 'Raw' container environment variables | `list` | `[]` | no |
 | external\_ips | External IPs for the service | `list` | `[]` | no |
 | external\_traffic\_policy | Load balancer external traffic policy | `string` | `"Local"` | no |
 | host\_network | Use host networking | `bool` | `false` | no |
-| hpa\_enabled | HorizontalPodAutoscaler H | `bool` | `false` | no |
+| hpa\_enabled | Enable HorizontalPodAutoscaler | `bool` | `false` | no |
 | hpa\_max\_replicas | Min number of replicas for HPA scaling | `number` | `5` | no |
 | hpa\_metrics | Metrics for HPA Scaling | `list` | <pre>[<br>  {<br>    "resource": {<br>      "name": "cpu",<br>      "target": {<br>        "averageUtilization": 60,<br>        "type": "Utilization"<br>      }<br>    },<br>    "type": "Resource"<br>  },<br>  {<br>    "resource": {<br>      "name": "memory",<br>      "target": {<br>        "averageUtilization": 60,<br>        "type": "Utilization"<br>      }<br>    },<br>    "type": "Resource"<br>  }<br>]</pre> | no |
 | hpa\_min\_replicas | Min number of replicas for HPA scaling | `number` | `2` | no |
 | image\_repository | Docker image repository | `string` | `"quay.io/datawire/aes"` | no |
-| image\_tag | Docker image tag | `string` | `"1.9.1"` | no |
+| image\_tag | Docker image tag | `string` | `"1.12.3"` | no |
 | init\_containers | Custom init containers | `list` | `[]` | no |
 | license\_key | License key for AES | `string` | `""` | no |
 | license\_key\_create\_secret | Create secret for license key | `bool` | `true` | no |
@@ -57,6 +66,7 @@ No requirements.
 | load\_balancer\_ip | LoadBalancer IP, if supported by the cloud provider | `string` | `""` | no |
 | load\_balancer\_source\_ranges | List of CIDRs that the load balancer will accept traffic from | `list` | `[]` | no |
 | max\_history | Max History for Helm | `number` | `20` | no |
+| name\_override | Override name of generated service | `string` | `null` | no |
 | namespace\_env | Set the AMBASSADOR\_NAMESPACE environment variable | `any` | `null` | no |
 | pod\_annotations | Pod annotations | `map` | `{}` | no |
 | pod\_disruption\_budget | Pod Disruption budget | `map` | `{}` | no |
@@ -95,6 +105,7 @@ No requirements.
 | test\_enabled | Deploy a test pod to test deployment | `bool` | `true` | no |
 | test\_image | Image used for test pod | `string` | `"busybox"` | no |
 | tolerations | Pod tolerations | `list` | `[]` | no |
+| topology\_spread\_constraints | Topology Spread Constraints for pods | `list` | `[]` | no |
 | volume\_mounts | Additional volume mounts | `list` | `[]` | no |
 | volumes | Additional volumes | `list` | `[]` | no |
 

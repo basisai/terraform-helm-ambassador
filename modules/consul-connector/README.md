@@ -11,6 +11,7 @@ information, and on how Ambassador
 
 | Name | Version |
 |------|---------|
+| terraform | >= 0.13 |
 | helm | >= 1 |
 
 ## Providers

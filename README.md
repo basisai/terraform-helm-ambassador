@@ -4,6 +4,7 @@
 
 | Name | Version |
 |------|---------|
+| terraform | >= 0.13 |
 | helm | >= 1 |
 
 ## Providers

@@ -31,7 +31,7 @@
 | chart\_namespace | Namespace to install the chart into | `string` | `"default"` | no |
 | chart\_repository | Helm repository for the chart | `string` | `"https://getambassador.io"` | no |
 | chart\_timeout | Timeout to wait for the Chart to be deployed. | `number` | `300` | no |
-| chart\_version | Version of Chart to install. Set to empty to install the latest version | `string` | `"6.6.3"` | no |
+| chart\_version | Version of Chart to install. Set to empty to install the latest version | `string` | `"6.7.0"` | no |
 | consul\_resolver\_create | Create Consul Resolver | `bool` | `false` | no |
 | consul\_resolver\_name | Name of Consul Resolver | `string` | `"consul-dc1"` | no |
 | consul\_resolver\_spec | Specification of Consul Resolver | <pre>object({<br>    address    = string,<br>    datacenter = string,<br>  })</pre> | `null` | no |
@@ -56,7 +56,7 @@
 | hpa\_metrics | Metrics for HPA Scaling | `list` | <pre>[<br>  {<br>    "resource": {<br>      "name": "cpu",<br>      "target": {<br>        "averageUtilization": 60,<br>        "type": "Utilization"<br>      }<br>    },<br>    "type": "Resource"<br>  },<br>  {<br>    "resource": {<br>      "name": "memory",<br>      "target": {<br>        "averageUtilization": 60,<br>        "type": "Utilization"<br>      }<br>    },<br>    "type": "Resource"<br>  }<br>]</pre> | no |
 | hpa\_min\_replicas | Min number of replicas for HPA scaling | `number` | `2` | no |
 | image\_repository | Docker image repository | `string` | `"quay.io/datawire/aes"` | no |
-| image\_tag | Docker image tag | `string` | `"1.12.3"` | no |
+| image\_tag | Docker image tag | `string` | `"1.13.0"` | no |
 | init\_containers | Custom init containers | `list` | `[]` | no |
 | license\_key | License key for AES | `string` | `""` | no |
 | license\_key\_create\_secret | Create secret for license key | `bool` | `true` | no |

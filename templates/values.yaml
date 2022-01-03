@@ -372,4 +372,4 @@ createNamespace: false
 # Whether Emissary should be created with default listeners:
 # - HTTP on port 8080
 # - HTTPS on port 8443
-createDefaultListeners: false
+createDefaultListeners: ${create_default_listeners}

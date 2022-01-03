@@ -44,6 +44,7 @@ No modules.
 | <a name="input_consul_resolver_name"></a> [consul\_resolver\_name](#input\_consul\_resolver\_name) | Name of Consul Resolver | `string` | `"consul-dc1"` | no |
 | <a name="input_consul_resolver_spec"></a> [consul\_resolver\_spec](#input\_consul\_resolver\_spec) | Specification of Consul Resolver | <pre>object({<br>    address    = string,<br>    datacenter = string,<br>  })</pre> | `null` | no |
 | <a name="input_container_security_context"></a> [container\_security\_context](#input\_container\_security\_context) | Container security context | `map` | <pre>{<br>  "allowPrivilegeEscalation": false<br>}</pre> | no |
+| <a name="input_create_default_listeners"></a> [create\_default\_listeners](#input\_create\_default\_listeners) | Whether Emissary should be created with default listeners: HTTP on port 8080, HTTPS on port 8443. See https://www.getambassador.io/docs/emissary/latest/howtos/configure-communications/ | `bool` | `false` | no |
 | <a name="input_daemonset"></a> [daemonset](#input\_daemonset) | Deploy as a DaemonSet | `bool` | `false` | no |
 | <a name="input_deployment_annotations"></a> [deployment\_annotations](#input\_deployment\_annotations) | Deploymoent annotations | `map` | `{}` | no |
 | <a name="input_deployment_labels"></a> [deployment\_labels](#input\_deployment\_labels) | Labels for deployments | `map` | `{}` | no |
@@ -77,7 +78,7 @@ No modules.
 | <a name="input_rbac_name_override"></a> [rbac\_name\_override](#input\_rbac\_name\_override) | Name of the RBAC resources defaults to the name of the release. Set nameOverride when installing Ambassador with cluster-wide scope in different namespaces with the same release name to avoid conflicts. | `string` | `""` | no |
 | <a name="input_rbac_psp"></a> [rbac\_psp](#input\_rbac\_psp) | List of PSP to enable usage of | `list` | `[]` | no |
 | <a name="input_readiness_probe"></a> [readiness\_probe](#input\_readiness\_probe) | Readiness probe configuration | `map` | <pre>{<br>  "failureThreshold": 3,<br>  "initialDelaySeconds": 30,<br>  "periodSeconds": 3<br>}</pre> | no |
-| <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Helm release name | `string` | `"ambassador"` | no |
+| <a name="input_release_name"></a> [release\_name](#input\_release\_name) | Helm release name | `string` | `"emissary-ingress"` | no |
 | <a name="input_replicas"></a> [replicas](#input\_replicas) | Number of replicas | `number` | `3` | no |
 | <a name="input_resources"></a> [resources](#input\_resources) | Pod resources | `map` | <pre>{<br>  "limits": {<br>    "cpu": "1000m",<br>    "memory": "600Mi"<br>  },<br>  "requests": {<br>    "cpu": "200m",<br>    "memory": "600Mi"<br>  }<br>}</pre> | no |
 | <a name="input_restart_policy"></a> [restart\_policy](#input\_restart\_policy) | Restart policy for pods | `string` | `""` | no |

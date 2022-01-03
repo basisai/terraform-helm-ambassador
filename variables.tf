@@ -1,6 +1,6 @@
 variable "release_name" {
   description = "Helm release name"
-  default     = "ambassador"
+  default     = "emissary-ingress"
 }
 
 variable "chart_name" {
@@ -410,4 +410,10 @@ variable "consul_resolver_spec" {
     datacenter = string,
   })
   default = null
+}
+
+variable "create_default_listeners" {
+  description = "Whether Emissary should be created with default listeners: HTTP on port 8080, HTTPS on port 8443. See https://www.getambassador.io/docs/emissary/latest/howtos/configure-communications/"
+  type        = bool
+  default     = false
 }

@@ -99,6 +99,8 @@ locals {
     consul_resolver_create = var.consul_resolver_create
     consul_resolver_name   = var.consul_resolver_create
     consul_resolver_spec   = var.consul_resolver_spec != null ? jsonencode(var.consul_resolver_spec) : "{}"
+
+    create_default_listeners = var.create_default_listeners
   }
 }
 

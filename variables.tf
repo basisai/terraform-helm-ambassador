@@ -5,22 +5,22 @@ variable "release_name" {
 
 variable "chart_name" {
   description = "Helm chart name to provision"
-  default     = "ambassador"
+  default     = "emissary-ingress"
 }
 
 variable "chart_repository" {
   description = "Helm repository for the chart"
-  default     = "https://getambassador.io"
+  default     = "https://app.getambassador.io"
 }
 
 variable "chart_version" {
   description = "Version of Chart to install. Set to empty to install the latest version"
-  default     = "6.7.0"
+  default     = "7.2.0"
 }
 
 variable "chart_namespace" {
   description = "Namespace to install the chart into"
-  default     = "default"
+  default     = "ambassador"
 }
 
 variable "chart_timeout" {

@@ -35,11 +35,11 @@ No modules.
 | <a name="input_admin_snapshot_port"></a> [admin\_snapshot\_port](#input\_admin\_snapshot\_port) | Port for admin snapshot | `number` | `8005` | no |
 | <a name="input_affinity"></a> [affinity](#input\_affinity) | Pod affinity | `map` | `{}` | no |
 | <a name="input_ambassador_config"></a> [ambassador\_config](#input\_ambassador\_config) | Ambassador Config | `string` | `""` | no |
-| <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Helm chart name to provision | `string` | `"ambassador"` | no |
-| <a name="input_chart_namespace"></a> [chart\_namespace](#input\_chart\_namespace) | Namespace to install the chart into | `string` | `"default"` | no |
-| <a name="input_chart_repository"></a> [chart\_repository](#input\_chart\_repository) | Helm repository for the chart | `string` | `"https://getambassador.io"` | no |
+| <a name="input_chart_name"></a> [chart\_name](#input\_chart\_name) | Helm chart name to provision | `string` | `"emissary-ingress"` | no |
+| <a name="input_chart_namespace"></a> [chart\_namespace](#input\_chart\_namespace) | Namespace to install the chart into | `string` | `"ambassador"` | no |
+| <a name="input_chart_repository"></a> [chart\_repository](#input\_chart\_repository) | Helm repository for the chart | `string` | `"https://app.getambassador.io"` | no |
 | <a name="input_chart_timeout"></a> [chart\_timeout](#input\_chart\_timeout) | Timeout to wait for the Chart to be deployed. | `number` | `300` | no |
-| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of Chart to install. Set to empty to install the latest version | `string` | `"6.7.0"` | no |
+| <a name="input_chart_version"></a> [chart\_version](#input\_chart\_version) | Version of Chart to install. Set to empty to install the latest version | `string` | `"7.2.0"` | no |
 | <a name="input_consul_resolver_create"></a> [consul\_resolver\_create](#input\_consul\_resolver\_create) | Create Consul Resolver | `bool` | `false` | no |
 | <a name="input_consul_resolver_name"></a> [consul\_resolver\_name](#input\_consul\_resolver\_name) | Name of Consul Resolver | `string` | `"consul-dc1"` | no |
 | <a name="input_consul_resolver_spec"></a> [consul\_resolver\_spec](#input\_consul\_resolver\_spec) | Specification of Consul Resolver | <pre>object({<br>    address    = string,<br>    datacenter = string,<br>  })</pre> | `null` | no |

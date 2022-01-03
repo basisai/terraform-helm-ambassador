@@ -53,13 +53,16 @@ variable "daemonset" {
 }
 
 variable "image_repository" {
+  # gcr.io/datawire/emissary
+  # docker.io/emissaryingress/emissary
+
   description = "Docker image repository"
-  default     = "quay.io/datawire/aes"
+  default     = "gcr.io/datawire/emissary"
 }
 
 variable "image_tag" {
   description = "Docker image tag"
-  default     = "1.13.0"
+  default     = "2.1.0"
 }
 
 variable "test_enabled" {
@@ -376,21 +379,6 @@ variable "ambassador_config" {
   default     = ""
 }
 
-variable "crds_enable" {
-  description = "Enable CRDs"
-  default     = true
-}
-
-variable "crds_create" {
-  description = "Create CRDs"
-  default     = true
-}
-
-variable "crds_keep" {
-  description = "Keep CRDs"
-  default     = true
-}
-
 variable "endpoint_resolver_create" {
   description = "Create endpoint resolver. See https://www.getambassador.io/docs/latest/topics/running/resolvers/"
   type        = bool
@@ -422,101 +410,4 @@ variable "consul_resolver_spec" {
     datacenter = string,
   })
   default = null
-}
-##########################################
-# Ambassador Edge Stack Configuration
-##########################################
-variable "enable_aes" {
-  description = "Enable Edge Stack"
-  default     = true
-}
-
-variable "license_key" {
-  description = "License key for AES"
-  default     = ""
-}
-
-variable "license_key_create_secret" {
-  description = "Create secret for license key"
-  default     = true
-}
-
-variable "license_key_secret_name" {
-  description = "Secret name for license"
-  default     = ""
-}
-
-variable "license_key_secret_annotations" {
-  description = "License key secret annotations"
-  default     = {}
-}
-
-variable "create_dev_portal_mappings" {
-  description = "# The DevPortal is exposed at /docs/ endpoint in the AES container. Setting this to true will automatically create routes for the DevPortal."
-  default     = true
-}
-
-variable "redis_url" {
-  description = "Custom Redis URL"
-  default     = ""
-}
-
-variable "redis_create" {
-  description = "Create Redis"
-  default     = true
-}
-
-variable "redis_image" {
-  description = "Redis image"
-  default     = "redis"
-}
-
-variable "redis_tag" {
-  description = "Redis image tag"
-  default     = "5.0.1"
-}
-
-variable "redis_deployment_annotations" {
-  description = "Redis deployment annotations"
-  default     = {}
-}
-
-variable "redis_service_annotations" {
-  description = "Redis service annotations"
-  default     = {}
-}
-
-variable "redis_resources" {
-  description = "Redis resources"
-  default     = {}
-}
-
-variable "redis_affinity" {
-  description = "Affinity for redis pods"
-  default     = {}
-}
-
-variable "redis_tolerations" {
-  description = "Redis tolerations"
-  default     = []
-}
-
-variable "auth_service_create" {
-  description = "Deploy AuthService"
-  default     = true
-}
-
-variable "auth_service_config" {
-  description = "Configuration for AuthService"
-  default     = {}
-}
-
-variable "rate_limit_create" {
-  description = "Create the RateLimitService"
-  default     = true
-}
-
-variable "registry_create" {
-  description = "Enable Projects beta feature"
-  default     = false
 }

@@ -15,7 +15,9 @@
 
 ## Modules
 
-No modules.
+| Name | Source | Version |
+|------|--------|---------|
+| <a name="module_crd"></a> [crd](#module\_crd) | ./modules/crd |  |
 
 ## Resources
 
@@ -44,6 +46,7 @@ No modules.
 | <a name="input_consul_resolver_name"></a> [consul\_resolver\_name](#input\_consul\_resolver\_name) | Name of Consul Resolver | `string` | `"consul-dc1"` | no |
 | <a name="input_consul_resolver_spec"></a> [consul\_resolver\_spec](#input\_consul\_resolver\_spec) | Specification of Consul Resolver | <pre>object({<br>    address    = string,<br>    datacenter = string,<br>  })</pre> | `null` | no |
 | <a name="input_container_security_context"></a> [container\_security\_context](#input\_container\_security\_context) | Container security context | `map` | <pre>{<br>  "allowPrivilegeEscalation": false<br>}</pre> | no |
+| <a name="input_crd_manifest"></a> [crd\_manifest](#input\_crd\_manifest) | Provide a custom CRD Manifest to be created. Otherwise, the version corresponding to var.image\_tag will be used | `string` | `null` | no |
 | <a name="input_create_default_listeners"></a> [create\_default\_listeners](#input\_create\_default\_listeners) | Whether Emissary should be created with default listeners: HTTP on port 8080, HTTPS on port 8443. See https://www.getambassador.io/docs/emissary/latest/howtos/configure-communications/ | `bool` | `false` | no |
 | <a name="input_daemonset"></a> [daemonset](#input\_daemonset) | Deploy as a DaemonSet | `bool` | `false` | no |
 | <a name="input_deployment_annotations"></a> [deployment\_annotations](#input\_deployment\_annotations) | Deploymoent annotations | `map` | `{}` | no |
@@ -51,7 +54,7 @@ No modules.
 | <a name="input_endpoint_resolver_create"></a> [endpoint\_resolver\_create](#input\_endpoint\_resolver\_create) | Create endpoint resolver. See https://www.getambassador.io/docs/latest/topics/running/resolvers/ | `bool` | `false` | no |
 | <a name="input_endpoint_resolver_name"></a> [endpoint\_resolver\_name](#input\_endpoint\_resolver\_name) | Name of endpoint resolver | `string` | `"endpoint"` | no |
 | <a name="input_env"></a> [env](#input\_env) | Additional environment variables | `map` | `{}` | no |
-| <a name="input_env_raw"></a> [env\_raw](#input\_env\_raw) | 'Raw' container environment variables | `list` | `[]` | no |
+| <a name="input_env_raw"></a> [env\_raw](#input\_env\_raw) | 'Raw' container environment variables in YAML | `string` | `""` | no |
 | <a name="input_external_ips"></a> [external\_ips](#input\_external\_ips) | External IPs for the service | `list` | `[]` | no |
 | <a name="input_external_traffic_policy"></a> [external\_traffic\_policy](#input\_external\_traffic\_policy) | Load balancer external traffic policy | `string` | `"Local"` | no |
 | <a name="input_host_network"></a> [host\_network](#input\_host\_network) | Use host networking | `bool` | `false` | no |
@@ -65,6 +68,7 @@ No modules.
 | <a name="input_liveness_probe"></a> [liveness\_probe](#input\_liveness\_probe) | Liveness Probe configuration | `map` | <pre>{<br>  "failureThreshold": 3,<br>  "initialDelaySeconds": 30,<br>  "periodSeconds": 3<br>}</pre> | no |
 | <a name="input_load_balancer_ip"></a> [load\_balancer\_ip](#input\_load\_balancer\_ip) | LoadBalancer IP, if supported by the cloud provider | `string` | `""` | no |
 | <a name="input_load_balancer_source_ranges"></a> [load\_balancer\_source\_ranges](#input\_load\_balancer\_source\_ranges) | List of CIDRs that the load balancer will accept traffic from | `list` | `[]` | no |
+| <a name="input_manage_crd"></a> [manage\_crd](#input\_manage\_crd) | Manage the CRD for Emissary Ingress | `bool` | `false` | no |
 | <a name="input_max_history"></a> [max\_history](#input\_max\_history) | Max History for Helm | `number` | `20` | no |
 | <a name="input_name_override"></a> [name\_override](#input\_name\_override) | Override name of generated service | `string` | `null` | no |
 | <a name="input_namespace_env"></a> [namespace\_env](#input\_namespace\_env) | Set the AMBASSADOR\_NAMESPACE environment variable | `any` | `null` | no |

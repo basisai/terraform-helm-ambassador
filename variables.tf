@@ -33,6 +33,18 @@ variable "max_history" {
   default     = 20
 }
 
+variable "manage_crd" {
+  description = "Manage the CRD for Emissary Ingress"
+  type        = bool
+  default     = false
+}
+
+variable "crd_manifest" {
+  description = "Provide a custom CRD Manifest to be created. Otherwise, the version corresponding to var.image_tag will be used"
+  type        = string
+  default     = null
+}
+
 #######################
 # Chart Values
 #######################
@@ -132,8 +144,9 @@ variable "env" {
 }
 
 variable "env_raw" {
-  description = "'Raw' container environment variables"
-  default     = []
+  description = "'Raw' container environment variables in YAML"
+  type        = string
+  default     = ""
 }
 
 variable "pod_security_context" {

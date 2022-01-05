@@ -77,7 +77,8 @@ env: ${env}
 
 # Additional container environment variable in raw YAML format
 # Uncomment or add additional environment variables for the container here.
-envRaw: ${env_raw}
+envRaw: |
+  ${indent(2, env_raw)}
 # - name: REDIS_PASSWORD
 #   value: password
 #   valueFrom:

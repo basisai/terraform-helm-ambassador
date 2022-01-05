@@ -38,7 +38,7 @@ locals {
     }) : ""
     single_namespace = var.single_namespace
     env              = jsonencode(var.env)
-    env_raw          = jsonencode(var.env_raw)
+    env_raw          = var.env_raw
 
     pod_security_context       = jsonencode(var.pod_security_context)
     container_security_context = jsonencode(var.container_security_context)

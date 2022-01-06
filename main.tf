@@ -38,7 +38,7 @@ locals {
     }) : ""
     single_namespace = var.single_namespace
     env              = jsonencode(var.env)
-    env_raw          = jsonencode(var.env_raw)
+    env_raw          = var.env_raw
 
     pod_security_context       = jsonencode(var.pod_security_context)
     container_security_context = jsonencode(var.container_security_context)
@@ -92,9 +92,6 @@ locals {
     topology_spread_constraints = jsonencode(var.topology_spread_constraints)
 
     ambassador_config = jsonencode(var.ambassador_config)
-    crds_enable       = var.crds_enable
-    crds_create       = var.crds_create
-    crds_keep         = var.crds_keep
 
     endpoint_resolver_create = var.endpoint_resolver_create
     endpoint_resolver_name   = var.endpoint_resolver_name
@@ -103,29 +100,7 @@ locals {
     consul_resolver_name   = var.consul_resolver_create
     consul_resolver_spec   = var.consul_resolver_spec != null ? jsonencode(var.consul_resolver_spec) : "{}"
 
-    enable_aes                     = var.enable_aes
-    license_key                    = var.license_key
-    license_key_create_secret      = var.license_key_create_secret
-    license_key_secret_name        = var.license_key_secret_name
-    license_key_secret_annotations = jsonencode(var.license_key_secret_annotations)
-    create_dev_portal_mappings     = var.create_dev_portal_mappings
-
-    redis_url    = var.redis_url
-    redis_create = var.redis_create
-    redis_image  = var.redis_image
-    redis_tag    = var.redis_tag
-
-    redis_deployment_annotations = jsonencode(var.redis_deployment_annotations)
-    redis_service_annotations    = jsonencode(var.redis_service_annotations)
-    redis_resources              = jsonencode(var.redis_resources)
-    redis_affinity               = jsonencode(var.redis_affinity)
-    redis_tolerations            = jsonencode(var.redis_tolerations)
-
-    auth_service_create = var.auth_service_create
-    auth_service_config = jsonencode(var.auth_service_config)
-
-    rate_limit_create = var.rate_limit_create
-    registry_create   = var.registry_create
+    create_default_listeners = var.create_default_listeners
   }
 }
 

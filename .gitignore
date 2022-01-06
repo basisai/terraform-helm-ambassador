@@ -4,3 +4,5 @@ terraform.tfstate.*.backup
 .terragrunt-cache
 *.retry
 *.pyc
+
+.terraform.lock.hcl

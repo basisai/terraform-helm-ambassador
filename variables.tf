@@ -1,26 +1,26 @@
 variable "release_name" {
   description = "Helm release name"
-  default     = "ambassador"
+  default     = "emissary-ingress"
 }
 
 variable "chart_name" {
   description = "Helm chart name to provision"
-  default     = "ambassador"
+  default     = "emissary-ingress"
 }
 
 variable "chart_repository" {
   description = "Helm repository for the chart"
-  default     = "https://getambassador.io"
+  default     = "https://app.getambassador.io"
 }
 
 variable "chart_version" {
   description = "Version of Chart to install. Set to empty to install the latest version"
-  default     = "6.7.0"
+  default     = "7.2.0"
 }
 
 variable "chart_namespace" {
   description = "Namespace to install the chart into"
-  default     = "default"
+  default     = "ambassador"
 }
 
 variable "chart_timeout" {
@@ -31,6 +31,18 @@ variable "chart_timeout" {
 variable "max_history" {
   description = "Max History for Helm"
   default     = 20
+}
+
+variable "manage_crd" {
+  description = "Manage the CRD for Emissary Ingress"
+  type        = bool
+  default     = false
+}
+
+variable "crd_manifest" {
+  description = "Provide a custom CRD Manifest to be created. Otherwise, the version corresponding to var.image_tag will be used"
+  type        = string
+  default     = null
 }
 
 #######################
@@ -53,13 +65,16 @@ variable "daemonset" {
 }
 
 variable "image_repository" {
+  # gcr.io/datawire/emissary
+  # docker.io/emissaryingress/emissary
+
   description = "Docker image repository"
-  default     = "quay.io/datawire/aes"
+  default     = "gcr.io/datawire/emissary"
 }
 
 variable "image_tag" {
   description = "Docker image tag"
-  default     = "1.13.0"
+  default     = "2.1.0"
 }
 
 variable "test_enabled" {
@@ -129,8 +144,9 @@ variable "env" {
 }
 
 variable "env_raw" {
-  description = "'Raw' container environment variables"
-  default     = []
+  description = "'Raw' container environment variables in YAML"
+  type        = string
+  default     = ""
 }
 
 variable "pod_security_context" {
@@ -376,21 +392,6 @@ variable "ambassador_config" {
   default     = ""
 }
 
-variable "crds_enable" {
-  description = "Enable CRDs"
-  default     = true
-}
-
-variable "crds_create" {
-  description = "Create CRDs"
-  default     = true
-}
-
-variable "crds_keep" {
-  description = "Keep CRDs"
-  default     = true
-}
-
 variable "endpoint_resolver_create" {
   description = "Create endpoint resolver. See https://www.getambassador.io/docs/latest/topics/running/resolvers/"
   type        = bool
@@ -423,100 +424,9 @@ variable "consul_resolver_spec" {
   })
   default = null
 }
-##########################################
-# Ambassador Edge Stack Configuration
-##########################################
-variable "enable_aes" {
-  description = "Enable Edge Stack"
-  default     = true
-}
 
-variable "license_key" {
-  description = "License key for AES"
-  default     = ""
-}
-
-variable "license_key_create_secret" {
-  description = "Create secret for license key"
-  default     = true
-}
-
-variable "license_key_secret_name" {
-  description = "Secret name for license"
-  default     = ""
-}
-
-variable "license_key_secret_annotations" {
-  description = "License key secret annotations"
-  default     = {}
-}
-
-variable "create_dev_portal_mappings" {
-  description = "# The DevPortal is exposed at /docs/ endpoint in the AES container. Setting this to true will automatically create routes for the DevPortal."
-  default     = true
-}
-
-variable "redis_url" {
-  description = "Custom Redis URL"
-  default     = ""
-}
-
-variable "redis_create" {
-  description = "Create Redis"
-  default     = true
-}
-
-variable "redis_image" {
-  description = "Redis image"
-  default     = "redis"
-}
-
-variable "redis_tag" {
-  description = "Redis image tag"
-  default     = "5.0.1"
-}
-
-variable "redis_deployment_annotations" {
-  description = "Redis deployment annotations"
-  default     = {}
-}
-
-variable "redis_service_annotations" {
-  description = "Redis service annotations"
-  default     = {}
-}
-
-variable "redis_resources" {
-  description = "Redis resources"
-  default     = {}
-}
-
-variable "redis_affinity" {
-  description = "Affinity for redis pods"
-  default     = {}
-}
-
-variable "redis_tolerations" {
-  description = "Redis tolerations"
-  default     = []
-}
-
-variable "auth_service_create" {
-  description = "Deploy AuthService"
-  default     = true
-}
-
-variable "auth_service_config" {
-  description = "Configuration for AuthService"
-  default     = {}
-}
-
-variable "rate_limit_create" {
-  description = "Create the RateLimitService"
-  default     = true
-}
-
-variable "registry_create" {
-  description = "Enable Projects beta feature"
+variable "create_default_listeners" {
+  description = "Whether Emissary should be created with default listeners: HTTP on port 8080, HTTPS on port 8443. See https://www.getambassador.io/docs/emissary/latest/howtos/configure-communications/"
+  type        = bool
   default     = false
 }

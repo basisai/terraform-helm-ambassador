@@ -1,10 +1,3 @@
----
-# Default values for ambassador.
-# This is a YAML-formatted file.
-# Declare variables to be passed into your templates.
-
-# Manually set metadata for the Release.
-#
 # Defaults to .Chart.Name
 nameOverride: ""
 # Defaults to .Release.Name-.Chart.Name unless .Release.Name contains "ambassador"
@@ -14,12 +7,32 @@ namespaceOverride: ""
 
 replicaCount: ${replicas}
 daemonSet: ${daemonset}
+# If true, Create a bare Pod instead of a Deployment or DaemonSet; for
+# test purposes.
+barePod: false
 
 # This will enable the test-ready Pod (https://github.com/datawire/ambassador-chart/blob/master/templates/tests/test-ready.yaml).
 # It will spawn a busybox container to call Ambassador's check_ready endpoint to validate it is working correctly.
 test:
   enabled: ${test_enabled}
   image: ${test_image}
+
+canary:
+  # Creates a Canary deployment and service using the following canary settings. Other settings inherited from main deployment
+  enabled: false
+  # When true allows for requests to the main ambassador to hit either the pods from the main deployment or the canary deployment.
+  # Requests to the canary service will still only hit the canary pods
+  mixPods: false
+  # Similar to 'replicaCount', but controls the number of pods for the Canary deployment. 0 by default
+  replicaCount: 0
+  # If a value is supplied, then the canary deployment will use the following image for Ambassador instead of using the image from the main deployment
+  image:
+    # Controlls the image repository for the canary deployment.
+    repository: ''
+    # Controlls the tag for the canary deployments image.repository. Uses the repository from the main deployment if the canay.image.repository is not set.
+    tag: ''
+  # Environment variables to be used for the canary deployment, see `envRaw` for usage example
+  envRaw: {}
 
 # Enable autoscaling using HorizontalPodAutoscaler
 # daemonSet: true, autoscaling will be disabled
@@ -64,7 +77,8 @@ env: ${env}
 
 # Additional container environment variable in raw YAML format
 # Uncomment or add additional environment variables for the container here.
-envRaw: ${env_raw}
+envRaw: |
+  ${indent(2, env_raw)}
 # - name: REDIS_PASSWORD
 #   value: password
 #   valueFrom:
@@ -304,11 +318,6 @@ topologySpreadConstraints: ${topology_spread_constraints}
 
 ambassadorConfig: ${ambassador_config}
 
-crds:
-  enabled: ${crds_enable}
-  create: ${crds_create}
-  keep: ${crds_keep}
-
 # Prometheus Operator ServiceMonitor configuration
 # See documentation: https://github.com/coreos/prometheus-operator/blob/master/Documentation/api.md#servicemonitor
 metrics:
@@ -317,102 +326,6 @@ metrics:
     # interval: 30s
     # scrapeTimeout: 30s
     # selector: {}
-
-################################################################################
-## Ambassador Edge Stack Configuration                                        ##
-################################################################################
-
-# The Ambassador Edge Stack is free for limited use without a license key.
-# Go to https://{ambassador-host}/edge_stack/admin/#dashboard to register
-# for a community license key.
-
-enableAES: ${enable_aes}
-
-# Set createSecret: false is installing multiple releases of The Ambassador
-# Edge Stack in the same namespace.
-licenseKey:
-  value: ${license_key}
-  createSecret: ${license_key_create_secret}
-  secretName: ${license_key_secret_name}
-  # Annotations to attach to the license-key-secret.
-  annotations: ${license_key_secret_annotations}
-
-# The DevPortal is exposed at /docs/ endpoint in the AES container.
-# Setting this to true will automatically create routes for the DevPortal.
-createDevPortalMappings: true
-devportal:
-  docsPrefix: "/documentation/"
-
-# The Ambassador Edge Stack uses a redis instance for managing authentication,
-# rate limiting, and sharing minor configuration details between pods for
-# centralized management. These values configure the redis instance that ships
-# by default with The Ambassador Edge Stack.
-#
-# URL of your redis instance. Defaults to redis instance created below.
-redisURL: ${redis_url}
-
-# Ambassador ships with a basic redis instance. Configure the deployment with the options below.
-redis:
-  create: ${redis_create}
-  image:
-    repository: ${redis_image}
-    tag: ${redis_tag}
-    pullPolicy: IfNotPresent
-  # Annotations for Ambassador Pro's redis instance.
-  annotations:
-    deployment: ${redis_deployment_annotations}
-    service: ${redis_service_annotations}
-  resources: ${redis_resources}
-  # If you want to specify resources, uncomment the following
-  # lines and remove the curly braces after 'resources:'.
-  # These are placeholder values and must be tuned.
-  #   limits:
-  #     cpu: 100m
-  #     memory: 256Mi
-  #   requests:
-  #     cpu: 50m
-  #     memory: 128Mi
-  nodeSelector: {}
-  affinity: ${redis_affinity}
-  tolerations: ${redis_tolerations}
-
-
-# Configures the AuthService that ships with the Ambassador Edge Stack.
-# Setting authService.create: false will not install the AES AuthService and
-# allow you to define your own.
-#
-# Typically when using the AES, you will want to keep this set to true and use
-# the External Filter to communicate with a custom authentication service.
-# https://www.getambassador.io/reference/filter-reference/#filter-type-external
-authService:
-  create: ${auth_service_create}
-  deploymentExtraName: auth
-  # Set additional configuration options. See https://www.getambassador.io/reference/services/auth-service for more information
-  optional_configurations: ${auth_service_config}
-    # include_body:
-    #   max_bytes: 4096
-    #   allow_partial: true
-    # status_on_error:
-    #   code: 403
-    # failure_mode_allow: false
-    # retry_policy:
-    #   retry_on: "5xx"
-    #   num_retries: 2
-    # add_linkerd_headers: true
-    # timeout_ms: 30000
-
-
-# Configures the RateLimitService in the Ambassador Edge Stack.
-# Keep this enabled to configure RateLimits in AES.
-rateLimit:
-  create: ${rate_limit_create}
-  deploymentExtraName: ratelimit
-
-# Projects are a beta feature of Ambassador that allow developers to stage and
-# deploy code with nothing more than a Github repository.
-# See: https://www.getambassador.io/docs/latest/topics/using/projects/
-registry:
-  create: ${registry_create}
 
 # Resolvers are used to configure the discovery service strategy for Ambasador Edge Stack.
 # See: https://www.getambassador.io/docs/latest/topics/running/resolvers/
@@ -428,80 +341,22 @@ resolvers:
     #   address: consul-server.default.svc.cluster.local:8500
     #   datacenter: dc1
 
-################################################################################
-## DEPRECATED configuration objects                                           ##
-################################################################################
-
-# DEPRECATED: Ambassador now exposes the /metrics endpoint in Envoy.
-# DEPRECATED: See https://www.getambassador.io/user-guide/monitoring#deployment for more information on how to use the /metrics endpoint
+# Create and manage an Ambassador Module from the Helm Chart. See:
+# https://www.getambassador.io/docs/edge-stack/latest/topics/running/ambassador
+# for more info on the available options.
 #
-# DEPRECATED: Enabling the prometheus exporter creates a sidecar and configures ambassador to use it
-prometheusExporter:
-  enabled: false
-  repository: prom/statsd-exporter
-  tag: v0.8.1
-  pullPolicy: IfNotPresent
-  resources: {}
-  # If you do want to specify resources, uncomment the following
-  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
-  #   limits:
-  #     cpu: 100m
-  #     memory: 256Mi
-  #   requests:
-  #     cpu: 50m
-  #     memory: 128Mi
-  # You can configure the statsd exporter to modify the behavior of mappings and other features.
-  # See documentation: https://github.com/prometheus/statsd_exporter/tree/v0.8.1#metric-mapping-and-configuration
-  # Uncomment the following line if you wish to specify a custom configuration:
-  # configuration: |
-  #   ---
-  #   mappings:
-  #   - match: 'envoy.cluster.*.upstream_cx_connect_ms'
-  #     name: "envoy_cluster_upstream_cx_connect_time"
-  #     timer_type: 'histogram'
-  #     labels:
-  #       cluster_name: "$1"
-
-# DEPRECATED: Use security.podSecurityContext
-# securityContext:
-#   runAsUser: 8888
-
-
-# Configures Service Preview that ships with the Ambassador Edge Stack and edgectl.
-# Setting servicePreview.enabled: true will install the Traffic Agent Service Account, Traffic Manager with RBAC, and ambassador-injector
-servicePreview:
-  enabled: false
-  trafficManager:
-    image:
-      # Leave blank to use image.repository and image.tag
-      repository:
-      tag:
-    serviceAccountName: "traffic-manager"
-  trafficAgent:
-    image:
-      # Leave blank to use image.repository and image.tag
-      repository:
-      tag:
-    singleNamespace: true
-    serviceAccountName: "traffic-agent"
-    port: 9900
-
-    # Configure the ambassador-injector webhook for Service Preview Traffic Agent automatic sidecar injection.
-    injector:
-      enabled: true
-
-      # If no injector.crtPEM and injector.keyPEM are provided, a self-signed certificate will be issued
-      # for the Common Name (CN) of `<ambassador-injector>.<namespace>.svc`, which is the cluster-internal DNS name
-      # for the service.
-      crtPEM: ""
-      keyPEM: ""
+# Note: The Module can only be named ambassador. There can only be one Module
+# installed per-namespace.
+module: {}
 
 # Configure the ambassador agent
 agent:
-  enabled: false
-  # this will be empty when it first gets applied, then the user will edit the agent to
-  # make it start reporting
-  cloudConnectToken: ""
+  # If `true`, installs the ambassador-agent Deployment, ServiceAccount and ClusterRole in the ambassador namespace, enabling the Service Catalog
+  enabled: true
+  # API token for reporting snapshots to the [Service Catalog](https://app.getambassador.io/cloud/catalog/);
+  # If empty, agent will not report snapshots
+  cloudConnectToken: ''
+  # Address of the ambassador Service Catalog rpc server.
   rpcAddress: https://app.getambassador.io/
   createArgoRBAC: true
   image:
@@ -509,11 +364,13 @@ agent:
     tag:
     repository:
 
-deploymentTool: ""
+deploymentTool: ''
 
 # configure docker to pull from private registry
-docker:
-  useImagePullSecret: false
-  imagePullSecretName:
+docker: {}
 createNamespace: false
-enableTestService: false
+
+# Whether Emissary should be created with default listeners:
+# - HTTP on port 8080
+# - HTTPS on port 8443
+createDefaultListeners: ${create_default_listeners}

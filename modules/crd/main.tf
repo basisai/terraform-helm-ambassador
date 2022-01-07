@@ -9,7 +9,7 @@ data "kubectl_file_documents" "manifest" {
 }
 
 resource "kubectl_manifest" "manifest" {
-    for_each = data.kubectl_file_documents.manifest.manifests
+  for_each = data.kubectl_file_documents.manifest.manifests
 
-    yaml_body = each.value
+  yaml_body = each.value
 }

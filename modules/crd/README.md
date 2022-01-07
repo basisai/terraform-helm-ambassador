@@ -15,25 +15,25 @@ Helm chart into your Terraform State.
 Modify the path of your resources accordingly:
 
 ```bash
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.authservices.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=authservices.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.consulresolvers.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=consulresolvers.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.devportals.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=devportals.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.filterpolicies.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=filterpolicies.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.filters.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=filters.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.hosts.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=hosts.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.kubernetesendpointresolvers.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=kubernetesendpointresolvers.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.kubernetesserviceresolvers.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=kubernetesserviceresolvers.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.logservices.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=logservices.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.mappings.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=mappings.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.modules.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=modules.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.projectcontrollers.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=projectcontrollers.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.projectrevisions.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=projectrevisions.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.projects.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=projects.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.ratelimits.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=ratelimits.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.ratelimitservices.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=ratelimitservices.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.tcpmappings.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=tcpmappings.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.tlscontexts.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=tlscontexts.getambassador.io"
-terraform import 'module.crd.kubernetes_manifest.crds["apiextensions.k8s.io/v1.CustomResourceDefinition.default.tracingservices.getambassador.io"]' "apiVersion=apiextensions.k8s.io/v1,kind=CustomResourceDefinition,namespace=default,name=tracingservices.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/authservices.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//authservices.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/consulresolvers.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//consulresolvers.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/devportals.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//devportals.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/filterpolicies.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//filterpolicies.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/filters.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//filters.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/hosts.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//hosts.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/kubernetesendpointresolvers.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//kubernetesendpointresolvers.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/kubernetesserviceresolvers.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//kubernetesserviceresolvers.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/logservices.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//logservices.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/mappings.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//mappings.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/modules.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//modules.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/projectcontrollers.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//projectcontrollers.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/projectrevisions.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//projectrevisions.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/projects.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//projects.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/ratelimits.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//ratelimits.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/ratelimitservices.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//ratelimitservices.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/tcpmappings.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//tcpmappings.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/tlscontexts.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//tlscontexts.getambassador.io"
+terraform import 'module.crd.kubectl_manifest.manifest["/apis/apiextensions.k8s.io/v1/customresourcedefinitions/tracingservices.getambassador.io"]' "apiextensions.k8s.io/v1//CustomResourceDefinition//tracingservices.getambassador.io"
 ```
 
 Note that the 1.x Helm charts created CRDs that are only used in AES and these will be imported and
@@ -46,14 +46,14 @@ Ingress.
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.15 |
 | <a name="requirement_http"></a> [http](#requirement\_http) | >= 2.0 |
-| <a name="requirement_kubernetes"></a> [kubernetes](#requirement\_kubernetes) | >= 2.6 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | >= 1.13 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
 | <a name="provider_http"></a> [http](#provider\_http) | >= 2.0 |
-| <a name="provider_kubernetes"></a> [kubernetes](#provider\_kubernetes) | >= 2.6 |
+| <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | >= 1.13 |
 
 ## Modules
 
@@ -63,8 +63,9 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [kubernetes_manifest.crds](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/manifest) | resource |
+| [kubectl_manifest.manifest](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/resources/manifest) | resource |
 | [http_http.manifest](https://registry.terraform.io/providers/hashicorp/http/latest/docs/data-sources/http) | data source |
+| [kubectl_file_documents.manifest](https://registry.terraform.io/providers/gavinbunney/kubectl/latest/docs/data-sources/file_documents) | data source |
 
 ## Inputs
 

@@ -6,6 +6,8 @@
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 0.13 |
 | <a name="requirement_helm"></a> [helm](#requirement\_helm) | >= 1 |
+| <a name="requirement_http"></a> [http](#requirement\_http) | >= 2.0 |
+| <a name="requirement_kubectl"></a> [kubectl](#requirement\_kubectl) | ~> 1.13 |
 
 ## Providers
 

@@ -2,9 +2,9 @@ terraform {
   required_version = ">= 0.15"
 
   required_providers {
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = ">= 2.6"
+    kubectl = {
+      source = "gavinbunney/kubectl"
+      version = ">= 1.13"
     }
     http = {
       source  = "hashicorp/http"

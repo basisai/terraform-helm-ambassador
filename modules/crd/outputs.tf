@@ -1,4 +1,4 @@
 output "resources" {
   description = "List of resources created"
-  value       = keys(local.manifest)
+  value       = keys(data.kubectl_file_documents.manifest.manifests)
 }

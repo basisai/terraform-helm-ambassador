@@ -352,7 +352,7 @@ module: {}
 # Configure the ambassador agent
 agent:
   # If `true`, installs the ambassador-agent Deployment, ServiceAccount and ClusterRole in the ambassador namespace, enabling the Service Catalog
-  enabled: true
+  enabled: false
   # API token for reporting snapshots to the [Service Catalog](https://app.getambassador.io/cloud/catalog/);
   # If empty, agent will not report snapshots
   cloudConnectToken: ''

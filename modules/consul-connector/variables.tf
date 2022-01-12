@@ -53,8 +53,8 @@ variable "image_tag" {
 
 variable "ambassador_id" {
   description = "Ambassador ID, if any"
-  type        = list(string)
-  default     = []
+  type        = string
+  default     = ""
 }
 
 variable "pod_security_context" {

@@ -19,7 +19,7 @@ locals {
     image_repository = var.image_repository
     image_tag        = var.image_tag
 
-    ambassador_id = jsonencode(var.ambassador_id)
+    ambassador_id = var.ambassador_id
     env           = jsonencode(var.env)
     volumes       = jsonencode(var.volumes)
     volume_mounts = jsonencode(var.volume_mounts)

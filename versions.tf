@@ -8,7 +8,7 @@ terraform {
     }
     kubectl = {
       source  = "gavinbunney/kubectl"
-      version = "~> 1.13"
+      version = ">= 1.13"
     }
     http = {
       source  = "hashicorp/http"

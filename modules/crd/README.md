@@ -52,7 +52,7 @@ Ingress.
 
 | Name | Version |
 |------|---------|
-| <a name="provider_http"></a> [http](#provider\_http) | >= 2.0 |
+| <a name="provider_http"></a> [http](#provider\_http) | 2.1.0 |
 | <a name="provider_kubectl"></a> [kubectl](#provider\_kubectl) | >= 1.13 |
 
 ## Modules

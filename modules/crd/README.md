@@ -71,6 +71,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_image_replace"></a> [image\_replace](#input\_image\_replace) | Replace the Docker image | `string` | `null` | no |
 | <a name="input_manifest_version"></a> [manifest\_version](#input\_manifest\_version) | Version of the CRDs to install | `string` | `"2.1.0"` | no |
 | <a name="input_yaml_manifest"></a> [yaml\_manifest](#input\_yaml\_manifest) | Override the YAML manifest instead of the one from the usual URL | `string` | `null` | no |
 

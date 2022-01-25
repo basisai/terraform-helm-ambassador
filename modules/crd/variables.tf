@@ -9,3 +9,9 @@ variable "yaml_manifest" {
   type        = string
   default     = null
 }
+
+variable "image_replace" {
+  description = "Replace the Docker image"
+  type        = string
+  default     = null
+}
